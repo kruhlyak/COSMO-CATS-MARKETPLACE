@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -20,7 +21,7 @@ public class FeatureToggleAspect {
 
     private final FeatureToggleService featureToggleService;
 
-    @Around(value = "@annotation(featureToggle)")
+    @Before(value = "@annotation(featureToggle)")
     public Object checkFeatureToggleAnnotation(ProceedingJoinPoint joinPoint, FeatureToggle featureToggle) throws Throwable {
         return checkToggle(joinPoint, featureToggle);
     }
