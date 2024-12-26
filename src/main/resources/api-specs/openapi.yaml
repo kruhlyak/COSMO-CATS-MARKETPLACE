@@ -19,12 +19,12 @@ paths:
             type: string
             format: uuid
       responses:
-        '200':
+        "200":
           description: OK
           content:
-            '*/*':
+            "*/*":
               schema:
-                $ref: '#/components/schemas/ProductResponseDto'
+                $ref: "#/components/schemas/ProductResponseDto"
     put:
       tags:
         - product-controller
@@ -40,15 +40,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductUpdateDto'
+              $ref: "#/components/schemas/ProductUpdateDto"
         required: true
       responses:
-        '200':
+        "200":
           description: OK
           content:
-            '*/*':
+            "*/*":
               schema:
-                $ref: '#/components/schemas/ProductResponseDto'
+                $ref: "#/components/schemas/ProductResponseDto"
     delete:
       tags:
         - product-controller
@@ -61,7 +61,7 @@ paths:
             type: string
             format: uuid
       responses:
-        '204':
+        "204":
           description: No Content
   /api/v1/products:
     get:
@@ -69,14 +69,14 @@ paths:
         - product-controller
       operationId: getAllProducts
       responses:
-        '200':
+        "200":
           description: OK
           content:
-            '*/*':
+            "*/*":
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ProductResponseDto'
+                  $ref: "#/components/schemas/ProductResponseDto"
     post:
       tags:
         - product-controller
@@ -85,29 +85,43 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProductCreateDto'
+              $ref: "#/components/schemas/ProductCreateDto"
         required: true
       responses:
-        '201':
+        "201":
           description: Created
           content:
-            '*/*':
+            "*/*":
               schema:
-                $ref: '#/components/schemas/ProductResponseDto'
+                $ref: "#/components/schemas/ProductResponseDto"
+  /api/v1/cosmo-cats:
+    get:
+      tags:
+        - cosmo-cat-controller
+      operationId: getAllCosmoCats
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CosmoCatDto"
   /api/v1/categories:
     get:
       tags:
         - category-controller
       operationId: getAllCategories
       responses:
-        '200':
+        "200":
           description: OK
           content:
-            '*/*':
+            "*/*":
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CategoryDto'
+                  $ref: "#/components/schemas/CategoryDto"
   /api/v1/categories/{id}:
     get:
       tags:
@@ -121,12 +135,12 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK
           content:
-            '*/*':
+            "*/*":
               schema:
-                $ref: '#/components/schemas/CategoryDto'
+                $ref: "#/components/schemas/CategoryDto"
 components:
   schemas:
     Category:
@@ -158,7 +172,7 @@ components:
           type: integer
           format: int32
         category:
-          $ref: '#/components/schemas/Category'
+          $ref: "#/components/schemas/Category"
     ProductResponseDto:
       type: object
       properties:
@@ -173,7 +187,7 @@ components:
           type: integer
           format: int32
         category:
-          $ref: '#/components/schemas/Category'
+          $ref: "#/components/schemas/Category"
     ProductCreateDto:
       required:
         - category
@@ -195,7 +209,17 @@ components:
           type: integer
           format: int32
         category:
-          $ref: '#/components/schemas/Category'
+          $ref: "#/components/schemas/Category"
+    CosmoCatDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
     CategoryDto:
       required:
         - name
